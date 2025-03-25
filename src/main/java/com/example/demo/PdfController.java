@@ -5,6 +5,7 @@ import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.bouncycastle.pqc.legacy.crypto.ntru.IndexGenerator;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -12,8 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -121,6 +126,38 @@ public class PdfController {
                                         @RequestParam(name = "height") String height,
                                         @RequestParam(name = "type") String type,
                                         @RequestParam(name = "pdf") MultipartFile pdf ){
+
+
+        try {
+            // PDF 문서 로드
+            PDDocument document = Loader.loadPDF(Util.convertMultipartFileToFile(pdf));
+
+            // 첫 번째 페이지 가져오기
+            PDPage page = document.getPage(0);
+
+            // 추출할 영역을 정의
+            Rectangle rect = new Rectangle(Integer.parseInt(left), Integer.parseInt(top), Integer.parseInt(width), Integer.parseInt(height));
+
+            // PDFTextStripperByArea 객체 생성
+            PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+            stripper.addRegion("region1", rect);
+
+            // 페이지에서 텍스트 추출
+            stripper.extractRegions(page);
+
+            // 특정 영역의 텍스트 출력
+            String text = stripper.getTextForRegion("region1");
+            System.out.println(text);
+            System.out.println("=========================");
+
+            // 문서 닫기
+            document.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
         return null;
     }

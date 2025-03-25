@@ -197,10 +197,10 @@ $(document).on("mouseup", function () {
     endY = null;
 
     var formData = new FormData();
-    formData.append("left", $captureArea.css('left'));
-    formData.append("top", $captureArea.css('top'));
-    formData.append("width", $captureArea.css('width'));
-    formData.append("height", $captureArea.css('height'));
+    formData.append("left", parseInt($captureArea.css('left')));
+    formData.append("top", parseInt($captureArea.css('top')));
+    formData.append("width", parseInt($captureArea.css('width')));
+    formData.append("height", parseInt($captureArea.css('height')));
     formData.append("type", $('input[name="q-type"]:checked').val());
     formData.append("pdf", pdf);
     $.ajax({
