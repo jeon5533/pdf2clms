@@ -196,23 +196,25 @@ $(document).on("mouseup", function () {
     endX = null;
     endY = null;
 
-    let left = $captureArea.css('left');
-    let top = $captureArea.css('top');
-    let width = $captureArea.css('width');
-    let height = $captureArea.css('height');
-    let type = $('input[name="q-type"]:checked').val();
-
+    var formData = new FormData();
+    formData.append("left", $captureArea.css('left'));
+    formData.append("top", $captureArea.css('top'));
+    formData.append("width", $captureArea.css('width'));
+    formData.append("height", $captureArea.css('height'));
+    formData.append("type", $('input[name="q-type"]:checked').val());
+    formData.append("pdf", pdf);
     $.ajax({
         url: "/getText",
         method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify({ left : left , top : top , width : width , height : height , type : type}),
-        success: function (response) {
-
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            // 서버로부터 응답을 받았을 때 처리
         },
-        error: function (xhr, status, error) {
+        error: function(xhr, status, error) {
             alert("서버 에러");
-        },
+        }
     });
 
 

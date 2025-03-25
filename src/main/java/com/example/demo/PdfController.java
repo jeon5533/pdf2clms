@@ -115,7 +115,12 @@ public class PdfController {
 
     @PostMapping("/getText")
     @ResponseBody
-    public Map<String , String> getText(@RequestBody Map<String , String> form){
+    public Map<String , String> getText(@RequestParam(name = "left") String left,
+                                        @RequestParam(name = "top") String top,
+                                        @RequestParam(name = "width") String width,
+                                        @RequestParam(name = "height") String height,
+                                        @RequestParam(name = "type") String type,
+                                        @RequestParam(name = "pdf") MultipartFile pdf ){
 
         return null;
     }
