@@ -1,0 +1,18 @@
+.work-form{
+    width: 500px;
+    height: 700px;
+
+    position: fixed;
+
+    right: 50px;
+    top: 10px;
+
+    border: 2px solid black;
+
+    display: none;
+
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+}

@@ -57,8 +57,6 @@ $(document).on('click', '#upload-pdf2canvas', function(){
         return;
     }
 
-///////
-
     const reader = new FileReader();
     reader.readAsArrayBuffer(pdf);
 
@@ -101,10 +99,11 @@ $(document).on('click', '#upload-pdf2canvas', function(){
                                 });
 
                             $('#pdf-upload-ar').css('display', 'none');
+                            $('.work-form').css('display' , 'flex');
 
                             $('#extract-data').css('display', 'flex');
 
-                            $('#extract-data').append(img);
+                            $('#extract-data').empty().append(img);
 
                             // 다음 페이지 처리
                             if (pageNum < totalPages) {
@@ -121,8 +120,6 @@ $(document).on('click', '#upload-pdf2canvas', function(){
                 console.error('PDF 로드 중 오류 발생:', error);
             });
     };
-
-///////
 
 });
 

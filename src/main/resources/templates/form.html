@@ -20,6 +20,8 @@
     <!-- common css -->
     <link rel="stylesheet" th:href="@{/css/common.css}">
 
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+
 </head>
 <body class="c-c-c">
 
@@ -33,6 +35,27 @@
 
 
 <div id="extract-data" class="c-c-s" style="display: none; width: 100%;"></div>
+
+<div class="work-form">
+
+    <button type="button" id="select-q">문제 선택</button>
+
+    <div class="r-s-c">
+        <input type="radio" name="q-type" id="multi-choice">
+        <label for="multi-choice">선택형</label>
+
+        <input type="radio" name="q-type" id="subjective">
+        <label for="subjective">단답형</label>
+
+        <input type="radio" name="q-type" id="O-X">
+        <label for="O-X">O/X</label>
+
+        <input type="radio" name="q-type" id="T-F">
+        <label for="T-F">T/F</label>
+    </div>
+
+
+</div>
 
 <!-- js -->
 <script th:src="@{/js/form.js}"></script>
