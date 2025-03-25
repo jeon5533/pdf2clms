@@ -126,7 +126,7 @@ public class PdfController {
                                         @RequestParam(name = "height") String height,
                                         @RequestParam(name = "type") String type,
                                         @RequestParam(name = "pdf") MultipartFile pdf ,
-                                        @RequestParam(name = "pageNum" , required = false) String pageNum){
+                                        @RequestParam(name = "pdfHeight" , required = false) String pdfHeight){
 
 
         try {

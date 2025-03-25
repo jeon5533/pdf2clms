@@ -5,6 +5,7 @@ const pdfjsLib = window['pdfjsLib'] || window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
 let pdf;
+let pdfHeight;
 
 $(document).on('click', '#upload-pdf2html', function(){
 
@@ -106,6 +107,10 @@ $(document).on('click', '#upload-pdf2canvas', function(){
 
                             $('#extract-data').append(img);
 
+                            if (pageNum === 1) {
+                                pdfHeight = img.height();  // 첫 페이지의 height 값을 전역 변수에 저장
+                            }
+
                             // 다음 페이지 처리
                             if (pageNum < totalPages) {
                                 renderPage(pageNum + 1);
@@ -199,6 +204,7 @@ $(document).on("mouseup", function (event) {
     formData.append("height", parseInt($captureArea.css('height')));
     formData.append("type", $('input[name="q-type"]:checked').val());
     formData.append("pdf", pdf);
+    formData.append("pdfHeight",pdfHeight);
     $.ajax({
         url: "/getText",
         method: "POST",
