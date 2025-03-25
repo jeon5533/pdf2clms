@@ -151,8 +151,8 @@ $(document).on('click', '#select-q', function(){
     $(document).on("mousedown", function (e) {
         if (!isCapturing) return;
 
-        startX = e.clientX;
-        startY = e.clientY;
+        startX = e.pageX;
+        startY = e.pageY;
 
         $captureArea.css({
             left: startX + "px",
@@ -167,8 +167,8 @@ $(document).on('click', '#select-q', function(){
     $(document).on("mousemove", function (e) {
         if (!isCapturing) return;
 
-        endX = e.clientX;
-        endY = e.clientY;
+        endX = e.pageX;
+        endY = e.pageY;
 
         const width = Math.abs(endX - startX);
         const height = Math.abs(endY - startY);
@@ -185,6 +185,11 @@ $(document).on('click', '#select-q', function(){
 $(document).on("mouseup", function () {
 
     $captureArea.css('display' , 'none');
+
+    console.log("Left: " + $captureArea.css('left'));
+    console.log("Top: " + $captureArea.css('top'));
+    console.log("Width: " + $captureArea.css('width'));
+    console.log("Height: " + $captureArea.css('height'));
 
     capAr.css('cursor' , 'default');
     isCapturing = false;
