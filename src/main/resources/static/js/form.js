@@ -92,6 +92,7 @@ $(document).on('click', '#upload-pdf2canvas', function(){
                             // Canvas를 이미지로 변환 (고해상도 유지)
                             const img = $('<img>')
                                 .attr('src', canvas.toDataURL('image/png'))
+                                .attr('data-page', pageNum)
                                 .css({
                                     width: "57%", // 반응형 크기 조절
                                     "max-width": viewport.width + "px",
@@ -103,7 +104,7 @@ $(document).on('click', '#upload-pdf2canvas', function(){
 
                             $('#extract-data').css('display', 'flex');
 
-                            $('#extract-data').empty().append(img);
+                            $('#extract-data').append(img);
 
                             // 다음 페이지 처리
                             if (pageNum < totalPages) {
@@ -182,7 +183,7 @@ $(document).on("mousemove", function (e) {
 });
 
 
-$(document).on("mouseup", function () {
+$(document).on("mouseup", function (event) {
 
     if (!isCapturing) return;
 
@@ -190,11 +191,6 @@ $(document).on("mouseup", function () {
 
     capAr.css('cursor' , 'default');
     isCapturing = false;
-
-    startX = null;
-    startY = null;
-    endX = null;
-    endY = null;
 
     var formData = new FormData();
     formData.append("left", parseInt($captureArea.css('left')));

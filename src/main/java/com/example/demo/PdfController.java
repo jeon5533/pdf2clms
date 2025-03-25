@@ -125,7 +125,8 @@ public class PdfController {
                                         @RequestParam(name = "width") String width,
                                         @RequestParam(name = "height") String height,
                                         @RequestParam(name = "type") String type,
-                                        @RequestParam(name = "pdf") MultipartFile pdf ){
+                                        @RequestParam(name = "pdf") MultipartFile pdf ,
+                                        @RequestParam(name = "pageNum") String pageNum){
 
 
         try {
