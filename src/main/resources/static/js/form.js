@@ -124,26 +124,91 @@ $(document).on('click', '#upload-pdf2canvas', function(){
 });
 
 
-let capStatus;
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+let isCapturing = false; // 캡처중 여부
+let startX, startY, endX, endY;
+
+const $captureArea = $("#capture-area-2");
+
+let capAr = $('#extract-data');
 
 $(document).on('click', '#select-q', function(){
 
-
-    let status = $(this).data('status');
-
-    let capAr = $('#extract-data');
-
-    if(status === 'active'){
-        $(this).data('status' , 'inactive');
-        capStatus = 'inactive';
-        capAr.css('cursor' , 'crosshair');
-    }else{
-        $(this).data('status' , 'active');
-        capStatus = 'active';
+    if(isCapturing){ // 캡처중이면
         capAr.css('cursor' , 'default');
+        isCapturing = false;
+    }else{ // 캡처중 아니면
+        capAr.css('cursor' , 'crosshair');
+        isCapturing = true;
     }
 
 });
+
+
+    $(document).on("mousedown", function (e) {
+        if (!isCapturing) return;
+
+        startX = e.clientX;
+        startY = e.clientY;
+
+        $captureArea.css({
+            left: startX + "px",
+            top: startY + "px",
+            width: "0px",
+            height: "0px",
+            display: "block",
+        });
+    });
+
+
+    $(document).on("mousemove", function (e) {
+        if (!isCapturing) return;
+
+        endX = e.clientX;
+        endY = e.clientY;
+
+        const width = Math.abs(endX - startX);
+        const height = Math.abs(endY - startY);
+
+        $captureArea.css({
+            width: width + "px",
+            height: height + "px",
+            left: Math.min(startX, endX) + "px",
+            top: Math.min(startY, endY) + "px",
+        });
+    });
+
+
+$(document).on("mouseup", function () {
+
+    $captureArea.css('display' , 'none');
+
+    capAr.css('cursor' , 'default');
+    isCapturing = false;
+
+    startX = null;
+    startY = null;
+    endX = null;
+    endY = null;
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 });
