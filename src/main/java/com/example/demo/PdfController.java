@@ -126,13 +126,14 @@ public class PdfController {
                                         @RequestParam(name = "height") String height,
                                         @RequestParam(name = "type") String type,
                                         @RequestParam(name = "pdf") MultipartFile pdf ,
-                                        @RequestParam(name = "pageNum") String pageNum){
+                                        @RequestParam(name = "pageNum" , required = false) String pageNum){
 
 
         try {
             // PDF 문서 로드
             PDDocument document = Loader.loadPDF(Util.convertMultipartFileToFile(pdf));
 
+            // ---------------------------------           1페이지만 하고있음. 다른 페이지들 처리 필요.
             // 첫 번째 페이지 가져오기
             PDPage page = document.getPage(0);
 
