@@ -95,7 +95,7 @@ $(document).on('click', '#upload-pdf2canvas', function(){
                             const img = $('<img>')
                                 .attr('src', canvas.toDataURL('image/png'))
                                 .css({
-                                    width: "70%", // 반응형 크기 조절
+                                    width: "57%", // 반응형 크기 조절
                                     "max-width": viewport.width + "px",
                                     "height": "auto" // 가로·세로 비율 유지
                                 });
