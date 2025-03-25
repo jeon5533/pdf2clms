@@ -1,0 +1,94 @@
+/*전체 영역*/
+html{
+    /* 크기 */
+    height: 100dvh;
+    width: calc(100vw - 8px);
+
+    /* 여백 */
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    /* 크기 */
+    width: 100%;
+    min-height: 610px;
+
+    /* 여백 */
+    padding: 0px;
+    margin: 0px;
+
+    /* 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* 스크롤 바 */
+::-webkit-scrollbar {
+	width: 8px;
+}
+::-webkit-scrollbar-thumb{
+	background: #b0aeae;
+}
+::-webkit-scrollbar-track {
+	background: #F6F6F6;
+}
+
+
+/* 정렬*/
+/* center-center */
+.c-c{
+    /* 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* row - center - center */
+.r-c-c{
+    /* 정렬 */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+/* row - start - center */
+.r-s-c{
+    /* 정렬 */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+/* row - end - center */
+.r-e-c{
+    /* 정렬 */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+/* column - start - center */
+.c-s-c{
+    /* 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+/* column - start - start */
+.c-s-s{
+    /* 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+/* column - center - center */
+.c-c-c{
+    /* 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>upload_file</title>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- common css -->
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+
+</head>
+<body class="c-c-c">
+
+<div class="r-c-c" id="pdf-upload-ar">
+    <input type="file" id="exam-pdf">
+    <button type="button" id="upload-pdf2html">html</button>
+
+    <button type="button" id="upload-pdf2canvas" style="margin-left: 10px;">canvas</button>
+</div>
+
+
+
+<div id="extract-data" class="c-c-c" style="display: none; width: 100%;"></div>
+
+<!-- js -->
+<script th:src="@{/js/form.js}"></script>
+</body>
+</html>
