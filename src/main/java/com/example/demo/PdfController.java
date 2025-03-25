@@ -9,10 +9,7 @@ import org.bouncycastle.pqc.legacy.crypto.ntru.IndexGenerator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileReader;
@@ -116,7 +113,12 @@ public class PdfController {
         return finalHtml.toString();
     }
 
+    @PostMapping("/getText")
+    @ResponseBody
+    public Map<String , String> getText(@RequestBody Map<String , String> form){
 
+        return null;
+    }
 
 
 }

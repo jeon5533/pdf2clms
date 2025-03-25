@@ -4,11 +4,11 @@ $(document).ready(function () {
 const pdfjsLib = window['pdfjsLib'] || window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-
+let pdf;
 
 $(document).on('click', '#upload-pdf2html', function(){
 
-    let pdf = $('#exam-pdf')[0].files[0];
+    pdf = $('#exam-pdf')[0].files[0];
 
     if(!pdf){
         alert('파일을 선택하세요.');
@@ -50,7 +50,7 @@ $(document).on('click', '#upload-pdf2html', function(){
 
 $(document).on('click', '#upload-pdf2canvas', function(){
 
-    let pdf = $('#exam-pdf')[0].files[0];
+    pdf = $('#exam-pdf')[0].files[0];
 
     if(!pdf){
         alert('파일을 선택하세요.');
@@ -148,48 +148,45 @@ $(document).on('click', '#select-q', function(){
 });
 
 
-    $(document).on("mousedown", function (e) {
-        if (!isCapturing) return;
+$(document).on("mousedown", function (e) {
+    if (!isCapturing) return;
 
-        startX = e.pageX;
-        startY = e.pageY;
+    startX = e.pageX;
+    startY = e.pageY;
 
-        $captureArea.css({
-            left: startX + "px",
-            top: startY + "px",
-            width: "0px",
-            height: "0px",
-            display: "block",
-        });
+    $captureArea.css({
+        left: startX + "px",
+        top: startY + "px",
+        width: "0px",
+        height: "0px",
+        display: "block",
     });
+});
 
 
-    $(document).on("mousemove", function (e) {
-        if (!isCapturing) return;
+$(document).on("mousemove", function (e) {
+    if (!isCapturing) return;
 
-        endX = e.pageX;
-        endY = e.pageY;
+    endX = e.pageX;
+    endY = e.pageY;
 
-        const width = Math.abs(endX - startX);
-        const height = Math.abs(endY - startY);
+    const width = Math.abs(endX - startX);
+    const height = Math.abs(endY - startY);
 
-        $captureArea.css({
-            width: width + "px",
-            height: height + "px",
-            left: Math.min(startX, endX) + "px",
-            top: Math.min(startY, endY) + "px",
-        });
+    $captureArea.css({
+        width: width + "px",
+        height: height + "px",
+        left: Math.min(startX, endX) + "px",
+        top: Math.min(startY, endY) + "px",
     });
+});
 
 
 $(document).on("mouseup", function () {
 
-    $captureArea.css('display' , 'none');
+    if (!isCapturing) return;
 
-    console.log("Left: " + $captureArea.css('left'));
-    console.log("Top: " + $captureArea.css('top'));
-    console.log("Width: " + $captureArea.css('width'));
-    console.log("Height: " + $captureArea.css('height'));
+    $captureArea.css('display' , 'none');
 
     capAr.css('cursor' , 'default');
     isCapturing = false;
@@ -198,6 +195,28 @@ $(document).on("mouseup", function () {
     startY = null;
     endX = null;
     endY = null;
+
+    let left = $captureArea.css('left');
+    let top = $captureArea.css('top');
+    let width = $captureArea.css('width');
+    let height = $captureArea.css('height');
+    let type = $('input[name="q-type"]:checked').val();
+
+    $.ajax({
+        url: "/getText",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({ left : left , top : top , width : width , height : height , type : type}),
+        success: function (response) {
+
+        },
+        error: function (xhr, status, error) {
+            alert("서버 에러");
+        },
+    });
+
+
+
 
 });
 
