@@ -124,7 +124,26 @@ $(document).on('click', '#upload-pdf2canvas', function(){
 });
 
 
+let capStatus;
 
+$(document).on('click', '#select-q', function(){
+
+
+    let status = $(this).data('status');
+
+    let capAr = $('#extract-data');
+
+    if(status === 'active'){
+        $(this).data('status' , 'inactive');
+        capStatus = 'inactive';
+        capAr.css('cursor' , 'crosshair');
+    }else{
+        $(this).data('status' , 'active');
+        capStatus = 'active';
+        capAr.css('cursor' , 'default');
+    }
+
+});
 
 //EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 });
